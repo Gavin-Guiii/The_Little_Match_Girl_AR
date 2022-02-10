@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class CharacterAction : MonoBehaviour
 {
+    // Four common characters' action types
     public enum ActionType
     {
         none,
@@ -12,6 +13,7 @@ public class CharacterAction : MonoBehaviour
         scale
     }
 
+    // Action is represented by a serializable class
     [Serializable]
     public class Action
     {
@@ -51,43 +53,51 @@ public class CharacterAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Implement the timeline
         counter += Time.deltaTime;
 
-        if (ActionSequence[ActionIndex] != null) // Check whether this action exists
+        // Check whether this action exists
+        if (ActionSequence[ActionIndex] != null) 
         {
-            if (ActionSequence[ActionIndex].type == ActionType.walk) // Walk
+            // Walk
+            if (ActionSequence[ActionIndex].type == ActionType.walk) 
             {
                 transform.Translate(ActionSequence[ActionIndex].walkDirection * ActionSequence[ActionIndex].walkSpeed * Time.deltaTime, marker.transform); // Translate the character
             }
 
-            else if (ActionSequence[ActionIndex].type == ActionType.rotate) // Rotate
+            // Rotate
+            else if (ActionSequence[ActionIndex].type == ActionType.rotate) 
             {
                 transform.localEulerAngles = Vector3.Lerp(transform.localEulerAngles, ActionSequence[ActionIndex].targetRotation, ActionSequence[ActionIndex].rotateSpeed * Time.deltaTime); // Rotate the character
             }
 
-            else if (ActionSequence[ActionIndex].type == ActionType.scale) // Scale
+            // Scale
+            else if (ActionSequence[ActionIndex].type == ActionType.scale)
             {
                 transform.localScale = Vector3.Lerp(transform.localScale, ActionSequence[ActionIndex].targetScale, ActionSequence[ActionIndex].scaleSpeed * Time.deltaTime); // Scale the character
             }
 
-            else if (ActionSequence[ActionIndex].type == ActionType.none) // None
+            // None
+            else if (ActionSequence[ActionIndex].type == ActionType.none) 
             {
                 // Do nothing
             }
 
-            if (counter >= ActionSequence[ActionIndex].duration) // Countdown is over
+            // If the counter is over, reset the counter
+            if (counter >= ActionSequence[ActionIndex].duration) 
             {
-                counter = 0; // Reset the counter
+                counter = 0;
 
-
-                if (ActionSequence[ActionIndex].OnCountdownEnd != null) // Check whether the event is valid
+                // Check whether the OnCountdownEnd event is valid. If so, invoke the event.
+                if (ActionSequence[ActionIndex].OnCountdownEnd != null) 
                 {
-                    ActionSequence[ActionIndex].OnCountdownEnd.Invoke(); // If so, invoke the event
+                    ActionSequence[ActionIndex].OnCountdownEnd.Invoke();
                 }
 
-                if (ActionIndex == ActionSequence.Length - 1) // Check whether this is the last one
+                // Check whether this is the last one. If so, disable this script. Otherwise, goes to the next one.
+                if (ActionIndex == ActionSequence.Length - 1) 
                 {
-                    enabled = false; // If so, disable this script
+                    enabled = false;
                 }
                 else
                 {
@@ -101,6 +111,7 @@ public class CharacterAction : MonoBehaviour
         }
     }
 
+    // These functions are provided to make animator configration easier.
     public void SetAnimatorBoolToTrue(string name)
     {
         animator.SetBool(name, true);

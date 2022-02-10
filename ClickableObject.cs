@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class ClickableObject : MonoBehaviour
 {
+    // Three common objects' action types
     public enum action
     {
         Jump,
@@ -17,6 +18,7 @@ public class ClickableObject : MonoBehaviour
 
     public UnityEvent OnClickEvent;
 
+    // This function performs corresponding actions when the object is clicked.
     public void OnClick()
     {
         switch(ClickAction){
@@ -30,6 +32,7 @@ public class ClickableObject : MonoBehaviour
             break;
         }
 
+        // Check whether there is a pre-defined OnClickEvent. If so, invoke it.
         if (OnClickEvent != null)
         {
             OnClickEvent.Invoke();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
+// Sequential Clickable Object: Users should click some objects in order to trigger an event.
 public class SequentialClickableObject : MonoBehaviour
 {
     public GameObject[] objectsToClick;
@@ -12,8 +13,10 @@ public class SequentialClickableObject : MonoBehaviour
     public UnityEvent OnSequenceEnd;
     public float TimeBeforeEvent = 0.5f;
     public float TimeBeforeDrop = 0.5f;
-    private int index;
     private bool active;
+
+    // The index of current object in the sequence
+    private int index;
 
     void Start()
     {
@@ -25,12 +28,17 @@ public class SequentialClickableObject : MonoBehaviour
     {
         if (active)
         {
+            // If the clicked object is the one should be clicked
             if (clicked == objectsToClick[index])
             {
+                // Make it float
                 clicked.transform.DOLocalMoveY(clicked.transform.localPosition.y + upHeight, upDuration);
                 index++;
+
+                // If this is the last object in the sequence
                 if (index == objectsToClick.Length)
                 {
+                    // Invoke the OnSequenceEnd event
                     if (OnSequenceEnd != null)
                     {
                         yield return new WaitForSeconds(TimeBeforeEvent);
@@ -44,10 +52,12 @@ public class SequentialClickableObject : MonoBehaviour
                     }
                 }
             }
+            // Otherwise, if the clicked object is NOT the one should be clicked (wrong object clicked or wrong order)
             else
             {
                 for (int i = 0; i < index; i++)
                 {
+                    // All the floating objects will go back to original places
                     objectsToClick[i].transform.DOLocalMoveY(objectsToClick[i].transform.localPosition.y - upHeight, upDuration);
                 }
                 index = 0;

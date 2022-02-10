@@ -15,13 +15,16 @@ public class DetectClickableObject : MonoBehaviour
 
     void Update()
     {
+        // When users click the screen
         if (Input.GetMouseButtonDown(0))
         {
+            // Cast a ray from the click point
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100))
             {
                 ClickableObject clickableObject = hit.collider.gameObject.GetComponent<ClickableObject>();
-
+                
+                // If it is a clickable object or a sequential clickable object, call the corresponding functions.
                 if (clickableObject != null)
                 {
                     clickableObject.OnClick();

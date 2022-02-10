@@ -17,6 +17,7 @@ public class LightMatch : MonoBehaviour
     public Image YellowEffect;
     public AudioSource MatchAudio;
 
+    // This function lets the girl think about match and allows users to click
     public void ThinkingAboutMatch()
     {
         MatchThoughts.gameObject.SetActive(true);
@@ -25,6 +26,7 @@ public class LightMatch : MonoBehaviour
         ThoughtsBackground.DOFade(1f, animDuration);
     }
 
+    // Show the lighting match UI
     public void LightingMatchUI()
     {
         MatchThoughts.DOFade(0f, animDuration).OnComplete(()=>
@@ -37,9 +39,12 @@ public class LightMatch : MonoBehaviour
         });
         LightMatchCanvas.SetActive(true);
         Match.transform.localEulerAngles = startMatchRotation;
+
+        // The looptype is set to yoyo so that it goes back and forth repeatedly
         Match.transform.DOLocalRotate(endMatchRotation, matchDuration).SetLoops(-1, LoopType.Yoyo);
     }
 
+    // Check whether the match is in the correct place
     public void CheckMatch()
     {
         if (Match.transform.localEulerAngles.z >= 240f && Match.transform.localEulerAngles.z <= 300f)
@@ -50,6 +55,7 @@ public class LightMatch : MonoBehaviour
         }
     }
 
+    // This function creates a transition visual effect
     public void Transition()
     {
         Sequence mySequence = DOTween.Sequence();
