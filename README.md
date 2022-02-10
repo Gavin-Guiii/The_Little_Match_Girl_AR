@@ -15,7 +15,7 @@ Demo video & details are available at: https://guizichen.wixsite.com/portfolio/a
 
 
 
-3. [**DetectClickableObject.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/DetectClickableObject.cs) <br> It determines whether a virtual object is clickable. If so, it will invoke corresponding events.
+3. [**DetectClickableObject.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/DetectClickableObject.cs) <br> It determines whether a virtual object is a [**ClickableObject**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/ClickableObject.cs) or a [**SequentialClickableObject**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/SequentialClickableObject.cs). If so, it will invoke corresponding events.
 
 
 
