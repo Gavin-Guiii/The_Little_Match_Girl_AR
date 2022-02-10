@@ -7,16 +7,15 @@ Demo video & details are available at: https://guizichen.wixsite.com/portfolio/a
 ## Code Samples
 (Detailed code explanations are included in the comments)
 
-1. [**CharacterAction.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/CharacterAction.cs) <br>It reads all the existing appointments and displays them.
+1. [**CharacterAction.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/CharacterAction.cs) <br>It works like a timeline and lets non-playable characters to perform certain actions at desired moments.
 
 
 
-2. [**LightMatch.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/LightMatch.cs) <br> It handles CRUD (Create, Read, Update, Delete) of the appointment database, and provides other useful functions. For example, it can return data of user's next appointment chronologically, or return the latest PCR Test result.
+2. [**LightMatch.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/LightMatch.cs) <br> It handles all the functions related to match lighting.
 
 
 
-3. [**DetectClickableObject.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/DetectClickableObject.cs) <br> It first reads all the medical centers stored in the medical center database, and then sorts them based on the distance between user's current location and the medical center.
-
+3. [**DetectClickableObject.cs**](https://github.com/Gavin-Guiii/The_Little_Match_Girl_AR/blob/main/DetectClickableObject.cs) <br> It determines whether a virtual object is clickable. If so, it will invoke corresponding events.
 
 
 
